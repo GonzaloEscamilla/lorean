@@ -1,4 +1,5 @@
 using System;
+using Core;
 using Cysharp.Threading.Tasks;
 using Login;
 using Telemetry;
@@ -10,6 +11,9 @@ namespace Initialization
 {
     public class GlobalInitializer : MonoBehaviour
     {
+        [SerializeField] 
+        private GameStateController gameStateController;
+        
         private const string UGS_ENVIRONMENT_NAME = "production"; 
         
         private void Awake()
@@ -24,7 +28,7 @@ namespace Initialization
             
             await UniTask.Delay(TimeSpan.FromSeconds(1));
             
-            // gameStateController.Initialize();
+            gameStateController.Initialize();
         }
     
         private async UniTask<string> InitializeUGS()
@@ -53,7 +57,6 @@ namespace Initialization
     
             ILoginService loginService = new LogInAnonymouslyController();
             Services.Add<ILoginService>(loginService);
-            loginService.LogIn();
         }
     }
 }
