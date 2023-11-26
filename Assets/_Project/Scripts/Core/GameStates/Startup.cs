@@ -28,8 +28,6 @@ namespace _Project.Scripts.Core.GameStates
         protected override void Exit()
         {
             _startupMenu.ActionFinished -= Exit;
-            _startupMenu.Hide();
-            
             _controller.SwitchState<Home>();
         }
     }

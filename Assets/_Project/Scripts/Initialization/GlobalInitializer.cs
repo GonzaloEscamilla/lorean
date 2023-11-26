@@ -4,6 +4,7 @@ using _Project.Scripts.Core.CoreGUI;
 using _Project.Scripts.GameServices;
 using _Project.Scripts.Login;
 using _Project.Scripts.Telemetry;
+using Core.Menues;
 using Cysharp.Threading.Tasks;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
@@ -17,7 +18,10 @@ namespace _Project.Scripts.Initialization
         private GameStateController gameStateController;
 
         [SerializeField] 
-        private RootCanvas rootCanvas;
+        private RootCanvasView rootCanvas;
+
+        [SerializeField] 
+        private ScreenTransitionController _screenTransitionController;
         
         private const string UGS_ENVIRONMENT_NAME = "production"; 
         
@@ -58,6 +62,9 @@ namespace _Project.Scripts.Initialization
         private void InitializeServices()
         {
             Debug.Log("Initialize other services");
+            
+            Services.Add<IScreenTransitionService>(_screenTransitionController);
+            _screenTransitionController.Transition(ScreenTransitionType.Out);
             
             ITelemetrySender telemetrySender = new UnityAnalyticsManager();
             Services.Add<ITelemetrySender>(telemetrySender);

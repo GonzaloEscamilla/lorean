@@ -12,7 +12,6 @@ namespace _Project.Scripts.Core.CoreGUI
         public override void Show()
         {
             Debug.LogWarning("Home Menu Show");
-            throw new System.NotImplementedException();
         }
 
         public override void Hide()

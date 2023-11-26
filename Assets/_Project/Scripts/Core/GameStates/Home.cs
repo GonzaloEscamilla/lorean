@@ -1,4 +1,5 @@
 ﻿using _Project.Scripts.Core.CoreGUI;
+using UnityEngine;
 
 namespace _Project.Scripts.Core.GameStates
 {
@@ -11,11 +12,14 @@ namespace _Project.Scripts.Core.GameStates
         
         public Home(GameStateController controller) : base(controller)
         {
+            Debug.LogWarning("Home Menu Constructuros");
             _homeMenuView = _menuInstanceProvider.GetMenuInstance<HomeMenuView>();
         }
 
         public override void Enter()
         {
+            Debug.LogWarning("Home Menu State Enter");
+
             _homeMenuView.Show();
         }
 
