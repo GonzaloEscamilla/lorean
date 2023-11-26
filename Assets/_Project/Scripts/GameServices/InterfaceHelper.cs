@@ -5,7 +5,7 @@ using Component = UnityEngine.Component;
 using Object = UnityEngine.Object;
 
 
-namespace _Project.Scripts.Utilities.Dependencies
+namespace _Project.Scripts.GameServices
 {
     public static class InterfaceHelper
     {

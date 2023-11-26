@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Unity.Services.Analytics;
 
-namespace Telemetry
+namespace _Project.Scripts.Telemetry
 {
     public sealed class UnityAnalyticsManager : ITelemetrySender
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Telemetry
+namespace _Project.Scripts.Telemetry
 {
     public interface ITelemetrySender
     {

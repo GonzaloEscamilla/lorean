@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
-using Telemetry;
+using _Project.Scripts.GameServices;
+using _Project.Scripts.Telemetry;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
 
-namespace Login
+namespace _Project.Scripts.Login
 {
     public class LogInAnonymouslyController : ILoginService
     {

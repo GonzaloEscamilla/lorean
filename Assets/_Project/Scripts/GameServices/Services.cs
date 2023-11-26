@@ -1,34 +1,36 @@
 using System;
-using _Project.Scripts.Utilities.Dependencies;
 
-public static class Services
+namespace _Project.Scripts.GameServices
 {
-    private static ServiceLocator Instance => _instance ?? (_instance = new ServiceLocator());
-
-    private static ServiceLocator _instance;
-
-    public static void Add<T>(T service) where T : class
+    public static class Services
     {
-        Services.Instance.AddService<T>(service);
-    }
+        private static ServiceLocator Instance => _instance ?? (_instance = new ServiceLocator());
 
-    public static void WaitFor<T>(Action<T> onServiceAdded) where T : class
-    {
-        Services.Instance.WaitFor<T>(onServiceAdded);
-    }
+        private static ServiceLocator _instance;
 
-    public static void Clear()
-    {
-        Services.Instance.Clear();
-    }
+        public static void Add<T>(T service) where T : class
+        {
+            Services.Instance.AddService<T>(service);
+        }
 
-    public static bool Exists<T>() where T : class
-    {
-        return Services.Instance.Contains<T>();
-    }
+        public static void WaitFor<T>(Action<T> onServiceAdded) where T : class
+        {
+            Services.Instance.WaitFor<T>(onServiceAdded);
+        }
 
-    public static T Get<T>() where T : class
-    {
-        return Services.Instance.GetService<T>();
+        public static void Clear()
+        {
+            Services.Instance.Clear();
+        }
+
+        public static bool Exists<T>() where T : class
+        {
+            return Services.Instance.Contains<T>();
+        }
+
+        public static T Get<T>() where T : class
+        {
+            return Services.Instance.GetService<T>();
+        }
     }
 }

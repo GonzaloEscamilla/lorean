@@ -1,4 +1,4 @@
-namespace Login
+namespace _Project.Scripts.Login
 {
     public interface ILoginService
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Project.Scripts.Utilities
+namespace _Project.Scripts.Utilities.WebGL
 {
     public static class WebGLMobileHelper
     {

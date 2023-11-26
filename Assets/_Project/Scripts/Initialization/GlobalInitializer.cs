@@ -1,23 +1,30 @@
 using System;
-using Core;
+using _Project.Scripts.Core;
+using _Project.Scripts.Core.CoreGUI;
+using _Project.Scripts.GameServices;
+using _Project.Scripts.Login;
+using _Project.Scripts.Telemetry;
 using Cysharp.Threading.Tasks;
-using Login;
-using Telemetry;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using UnityEngine;
 
-namespace Initialization
+namespace _Project.Scripts.Initialization
 {
     public class GlobalInitializer : MonoBehaviour
     {
         [SerializeField] 
         private GameStateController gameStateController;
+
+        [SerializeField] 
+        private RootCanvas rootCanvas;
         
         private const string UGS_ENVIRONMENT_NAME = "production"; 
         
         private void Awake()
         {
+            DontDestroyOnLoad(this);
+            
             Initialize();
         }
     
@@ -57,6 +64,11 @@ namespace Initialization
     
             ILoginService loginService = new LogInAnonymouslyController();
             Services.Add<ILoginService>(loginService);
+
+            Services.Add<IRootCanvasProvider>(rootCanvas);
+
+            IMenuInstanceProvider menuInstanceProvider = new MenuInstanceFactory();
+            Services.Add<IMenuInstanceProvider>(menuInstanceProvider);
         }
     }
 }

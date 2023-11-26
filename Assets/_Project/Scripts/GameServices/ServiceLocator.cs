@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _Project.Scripts.Utilities.Dependencies
+namespace _Project.Scripts.GameServices
 {
     internal class ServiceLocator
     {

@@ -1,7 +1,8 @@
 ﻿using System;
+using _Project.Scripts.Core.GameStates;
 using UnityEngine;
 
-namespace Core
+namespace _Project.Scripts.Core
 {
     public class GameStateController : MonoBehaviour
     {
