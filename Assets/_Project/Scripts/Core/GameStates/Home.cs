@@ -17,7 +17,17 @@ namespace _Project.Scripts.Core.GameStates
 
         public override void Enter()
         {
+            _homeMenuView.PlayButtonPressed += OnPlayButtonPressed;
+            _homeMenuView.OptionsButtonsPressed += OnOptionButtonPressed;
             _homeMenuView.Show();
+        }
+
+        private void OnOptionButtonPressed()
+        {
+        }
+
+        private void OnPlayButtonPressed()
+        {
         }
 
         public override void Update()
