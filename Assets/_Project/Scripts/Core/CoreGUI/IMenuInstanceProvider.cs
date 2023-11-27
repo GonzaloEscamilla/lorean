@@ -56,6 +56,8 @@ namespace _Project.Scripts.Core.CoreGUI
             GameMenuBase menuBaseInstance;
             
             var splashScreenInstance = GameObject.Instantiate(menuPrefab, rootCanvasProvider.Canvas.transform);
+            rootCanvasProvider.AddNewChild(splashScreenInstance);
+
             menuBaseInstance = splashScreenInstance.GetComponent<GameMenuBase>();
             
             _catchedMenues.Add(menuBaseInstance.GetType().ToString(), menuBaseInstance);

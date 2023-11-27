@@ -11,6 +11,11 @@ namespace Core.Menues
         [SerializeField] private CanvasScaler canvasScaler;
 
         public Canvas Canvas => rootCanvas;
+        public void AddNewChild(GameObject newChild)
+        {
+            newChild.transform.SetAsFirstSibling();
+        }
+
         private void Awake()
         {
             if (WebGLMobileHelper.IsRunningOnMobile())

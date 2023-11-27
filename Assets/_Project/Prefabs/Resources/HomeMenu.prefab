@@ -473,9 +473,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7381744414683205882}
+  - component: {fileID: 582459657865443169}
   - component: {fileID: 5771043315902373042}
   - component: {fileID: 2600053511726499804}
-  - component: {fileID: 5615350700759698421}
   m_Layer: 5
   m_Name: HomeMenu
   m_TagString: Untagged
@@ -505,6 +505,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &582459657865443169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5420093043455585847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd560a4493c410d8d811ae7ab02e02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &5771043315902373042
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -543,18 +555,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5615350700759698421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5420093043455585847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6ca3541416a47919dec701b81f2451a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8067078504169319182
 GameObject:
   m_ObjectHideFlags: 0

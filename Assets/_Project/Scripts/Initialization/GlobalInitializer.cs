@@ -64,7 +64,6 @@ namespace _Project.Scripts.Initialization
             Debug.Log("Initialize other services");
             
             Services.Add<IScreenTransitionService>(_screenTransitionController);
-            _screenTransitionController.Transition(ScreenTransitionType.Out);
             
             ITelemetrySender telemetrySender = new UnityAnalyticsManager();
             Services.Add<ITelemetrySender>(telemetrySender);

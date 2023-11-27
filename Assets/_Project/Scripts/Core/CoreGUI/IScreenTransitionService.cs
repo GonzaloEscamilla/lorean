@@ -11,7 +11,6 @@ namespace _Project.Scripts.Core.CoreGUI
     
     public interface IScreenTransitionService
     {
-        event Action TransitionFinished;
-        void Transition(ScreenTransitionType type);
+        void Transition(ScreenTransitionType type, Action callback);
     }
 }

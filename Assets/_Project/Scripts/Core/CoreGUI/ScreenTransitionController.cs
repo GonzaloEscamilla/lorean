@@ -9,27 +9,21 @@ namespace _Project.Scripts.Core.CoreGUI
         [SerializeField] 
         private CanvasGroup fadeCanvas;
 
-        public event Action TransitionFinished;
-
-        public void Transition(ScreenTransitionType type)
+        private Tweener tweener;
+        
+        public void Transition(ScreenTransitionType type, Action callback = null)
         {
             switch (type)
             {
                 case ScreenTransitionType.In:
-                    fadeCanvas.DOFade(1, 1f).OnComplete(OnFadeFinished);
+                    fadeCanvas.DOFade(0, 2f).OnComplete(() => callback?.Invoke());
                     break;
                 case ScreenTransitionType.Out:
-                    fadeCanvas.DOFade(0, 1f).OnComplete(OnFadeFinished);
+                    fadeCanvas.DOFade(1, 2f).OnComplete(() => callback?.Invoke());
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
-        }
-
-        private void OnFadeFinished()
-        {
-            Debug.Log("Transition Finished");
-            TransitionFinished?.Invoke();
         }
     }
 }

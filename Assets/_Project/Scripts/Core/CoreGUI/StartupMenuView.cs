@@ -1,12 +1,12 @@
-﻿using _Project.Scripts.GameServices;
+﻿using System;
+using _Project.Scripts.GameServices;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace _Project.Scripts.Core.CoreGUI
 {
     public class StartupMenuView : GameMenuBase
     {
-        private IScreenTransitionService _screenTransitionService;
-        
         public override void Initialize()
         {
             _screenTransitionService = Services.Get<IScreenTransitionService>();
@@ -16,24 +16,27 @@ namespace _Project.Scripts.Core.CoreGUI
 
         public override void Show()
         {
-            _screenTransitionService.TransitionFinished += Hide;
-            _screenTransitionService.Transition(ScreenTransitionType.In);
+            gameObject.SetActive(true);
+            _screenTransitionService.Transition(ScreenTransitionType.In, Hide);
             Debug.LogWarning("Startup Menu Show");
         }
-
+        
         public override void Hide()
         {
-            _screenTransitionService.TransitionFinished -= Hide;
-            
-            _screenTransitionService.TransitionFinished += OnFadeOutFinished;
-            _screenTransitionService.Transition(ScreenTransitionType.Out);
+            HoldSplashScreenBeforeHiding().Forget();
+        }
 
-            Debug.LogWarning("Startup Menu Hide");
+        private async UniTaskVoid HoldSplashScreenBeforeHiding()
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
+            
+            _screenTransitionService.Transition(ScreenTransitionType.Out, OnFadeOutFinished);
         }
 
         private void OnFadeOutFinished()
         {
-            _screenTransitionService.TransitionFinished -= OnFadeOutFinished;
+            gameObject.SetActive(false);
+            Debug.Log("Fade out finished");
             ActionFinished?.Invoke();
         }
     }
