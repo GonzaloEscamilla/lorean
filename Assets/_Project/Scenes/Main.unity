@@ -279,6 +279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 380800912}
   - component: {fileID: 380800911}
+  - component: {fileID: 380800913}
   m_Layer: 0
   m_Name: Services
   m_TagString: Untagged
@@ -300,7 +301,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStateController: {fileID: 19611220}
   rootCanvas: {fileID: 1108696946}
-  _screenTransitionController: {fileID: 371394871}
+  screenTransitionController: {fileID: 371394871}
+  logger: {fileID: 380800913}
 --- !u!4 &380800912
 Transform:
   m_ObjectHideFlags: 0
@@ -317,6 +319,21 @@ Transform:
   - {fileID: 19611221}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &380800913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380800910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76541f0527e8f3540bb736bf3434d099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showLogs: 1
+  _prefix: 'Core: '
+  _prefixColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

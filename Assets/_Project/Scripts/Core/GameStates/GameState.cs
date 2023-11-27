@@ -1,5 +1,6 @@
 ﻿using _Project.Scripts.Core.CoreGUI;
 using _Project.Scripts.GameServices;
+using _Project.Scripts.Utilities;
 
 namespace _Project.Scripts.Core.GameStates
 {
@@ -7,11 +8,13 @@ namespace _Project.Scripts.Core.GameStates
     {
         protected GameStateController _controller;
         protected IMenuInstanceProvider _menuInstanceProvider;
+        protected IDebug _debug;
         
         protected GameState(GameStateController controller)
         {
             _controller = controller;
             _menuInstanceProvider = Services.Get<IMenuInstanceProvider>();
+            _debug = Services.Get<IDebug>();
         }
 
         public abstract void Enter();

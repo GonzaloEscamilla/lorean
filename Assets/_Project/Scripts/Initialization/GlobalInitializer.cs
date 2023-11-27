@@ -4,11 +4,13 @@ using _Project.Scripts.Core.CoreGUI;
 using _Project.Scripts.GameServices;
 using _Project.Scripts.Login;
 using _Project.Scripts.Telemetry;
+using _Project.Scripts.Utilities;
 using Core.Menues;
 using Cysharp.Threading.Tasks;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using UnityEngine;
+using Logger = _Project.Scripts.Utilities.Logger;
 
 namespace _Project.Scripts.Initialization
 {
@@ -21,7 +23,10 @@ namespace _Project.Scripts.Initialization
         private RootCanvasView rootCanvas;
 
         [SerializeField] 
-        private ScreenTransitionController _screenTransitionController;
+        private ScreenTransitionController screenTransitionController;
+
+        [SerializeField] 
+        private Logger logger;
         
         private const string UGS_ENVIRONMENT_NAME = "production"; 
         
@@ -48,7 +53,7 @@ namespace _Project.Scripts.Initialization
             {
                 var options = new InitializationOptions().SetEnvironmentName(UGS_ENVIRONMENT_NAME);
                 await UnityServices.InitializeAsync(options);
-                Debug.Log("Unity Game Services Initialized");
+                logger.Log("Unity Game Services Initialized");
             }
             catch (Exception exception)
             {
@@ -61,9 +66,11 @@ namespace _Project.Scripts.Initialization
         
         private void InitializeServices()
         {
-            Debug.Log("Initialize other services");
-            
-            Services.Add<IScreenTransitionService>(_screenTransitionController);
+            logger.Log("Services Initialization");
+
+            Services.Add<IDebug>(logger);
+
+            Services.Add<IScreenTransitionService>(screenTransitionController);
             
             ITelemetrySender telemetrySender = new UnityAnalyticsManager();
             Services.Add<ITelemetrySender>(telemetrySender);

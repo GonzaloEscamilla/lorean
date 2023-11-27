@@ -3,7 +3,7 @@ using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Utilities
 {
-    [AddComponentMenu("Mayhem Stricker/Services/Logger")]
+    [AddComponentMenu("ND/Services/Logger")]
     public class Logger : MonoBehaviour, IDebug
     {
         [Header("Settings")] 
@@ -38,12 +38,25 @@ namespace _Project.Scripts.Utilities
             InternalLogWarning(message, sender);
         }
 
+        public void LogError(object message, Object sender = null)
+        {
+            InternalLogError(message, sender);
+        }
+
         [System.Diagnostics.Conditional("ENABLE_LOGS")]
         private void InternalLogWarning(object message, Object sender = null)
         {
             if (!_showLogs) return;
 
             Debug.LogWarning($"<color={_hexColor}>{_prefix}: {message}</color>",sender);
+        }
+        
+        [System.Diagnostics.Conditional("ENABLE_LOGS")]
+        private void InternalLogError(object message, Object sender = null)
+        {
+            if (!_showLogs) return;
+
+            Debug.LogError($"<color={_hexColor}>{_prefix}: {message}</color>",sender);
         }
         
         public string Prefix

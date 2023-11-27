@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using _Project.Scripts.GameServices;
+using _Project.Scripts.Utilities;
 using UnityEngine;
 
 namespace _Project.Scripts.Core.CoreGUI
@@ -20,8 +21,12 @@ namespace _Project.Scripts.Core.CoreGUI
 
         private readonly Dictionary<Type, string> _menuTypes;
 
+        private IDebug _debug;
+        
         public MenuInstanceFactory()
         {
+            _debug = Services.Get<IDebug>();
+            
             _menuTypes = new ()
             {
                 {typeof(StartupMenuView), _startupMenuPrefabName},
@@ -47,7 +52,7 @@ namespace _Project.Scripts.Core.CoreGUI
             var menuPrefab = Resources.Load<GameObject>(prefabName);
             if (menuPrefab == null)
             {
-                Debug.LogError("The SplashScreen prefab failed to load, please make sure it exist in the right path");
+                _debug.LogError("The SplashScreen prefab failed to load, please make sure it exist in the right path");
                 return null;
             }
 
