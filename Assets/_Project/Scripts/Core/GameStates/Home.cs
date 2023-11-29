@@ -28,14 +28,8 @@ namespace _Project.Scripts.Core.GameStates
 
         private void OnPlayButtonPressed()
         {
-        }
-
-        public override void Update()
-        {
-        }
-
-        protected override void Exit()
-        {
+            _homeMenuView.PlayButtonPressed -= OnPlayButtonPressed;
+            _controller.SwitchState<LoadingLevel>();
         }
     }
 }

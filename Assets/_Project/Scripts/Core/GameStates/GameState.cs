@@ -18,12 +18,13 @@ namespace _Project.Scripts.Core.GameStates
         }
 
         public abstract void Enter();
-        public abstract void Update();
+
+        public virtual void Update() { }
         
         /// <summary>
-        /// This state should dispose and shutdown all resoruces
+        /// This state should dispose and shutdown all resources
         /// </summary>
-        protected abstract void Exit();
+        protected virtual void Exit(){ }
 
         public override string ToString()
         {

@@ -26,6 +26,9 @@ namespace _Project.Scripts.Initialization
         private ScreenTransitionController screenTransitionController;
 
         [SerializeField] 
+        private SceneLoader sceneLoader;
+        
+        [SerializeField] 
         private Logger logger;
         
         private const string UGS_ENVIRONMENT_NAME = "production"; 
@@ -70,6 +73,8 @@ namespace _Project.Scripts.Initialization
 
             Services.Add<IDebug>(logger);
 
+            Services.Add<ISceneLoader>(sceneLoader);
+            
             Services.Add<IScreenTransitionService>(screenTransitionController);
             
             ITelemetrySender telemetrySender = new UnityAnalyticsManager();

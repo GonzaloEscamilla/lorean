@@ -1,8 +1,8 @@
 ﻿namespace _Project.Scripts.Core.GameStates
 {
-    public class LevelRunning : GameState
+    public class Gameplay : GameState
     {
-        public LevelRunning(GameStateController controller) : base(controller)
+        public Gameplay(GameStateController controller) : base(controller)
         {
         }
 
