@@ -17,6 +17,9 @@ namespace _Project.Scripts.Initialization
     public class GlobalInitializer : MonoBehaviour
     {
         [SerializeField] 
+        private GameSettings gameSettings;
+        
+        [SerializeField] 
         private GameStateController gameStateController;
 
         [SerializeField] 
@@ -73,6 +76,9 @@ namespace _Project.Scripts.Initialization
 
             Services.Add<IDebug>(logger);
 
+            var gameSettingsProvider = new GameSettingsProvider(gameSettings);
+            Services.Add<IGameSettingsProvider>(gameSettingsProvider);
+            
             Services.Add<ISceneLoader>(sceneLoader);
             
             Services.Add<IScreenTransitionService>(screenTransitionController);

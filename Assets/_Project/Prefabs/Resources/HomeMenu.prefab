@@ -517,6 +517,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd560a4493c410d8d811ae7ab02e02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playButton: {fileID: 5688726371601141175}
+  optionsButton: {fileID: 6512615244386633733}
 --- !u!222 &5771043315902373042
 CanvasRenderer:
   m_ObjectHideFlags: 0

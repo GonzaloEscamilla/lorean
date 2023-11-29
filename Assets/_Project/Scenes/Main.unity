@@ -215,8 +215,8 @@ CanvasGroup:
   m_GameObject: {fileID: 371394866}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &371394869
 MonoBehaviour:
@@ -299,10 +299,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561aa6e47b7e2f0498a129a75c489f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameSettings: {fileID: 11400000, guid: 574850e967eb13b4a870a6a2509abb7e, type: 2}
   gameStateController: {fileID: 19611220}
   rootCanvas: {fileID: 1108696946}
   screenTransitionController: {fileID: 371394871}
-  sceneLoader: {fileID: 0}
+  sceneLoader: {fileID: 423800402}
   logger: {fileID: 380800913}
 --- !u!4 &380800912
 Transform:

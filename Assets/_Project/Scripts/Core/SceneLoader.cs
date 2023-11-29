@@ -13,7 +13,7 @@ namespace _Project.Scripts.Core
     {
         public async UniTaskVoid LoadSceneAsync(int sceneIndex)
         {
-            await SceneManager.LoadSceneAsync(sceneIndex);
+            await SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
         }
     }
 }
