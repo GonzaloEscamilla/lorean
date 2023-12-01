@@ -21,10 +21,6 @@ namespace _Project.Scripts.Core.GameStates
             _startupMenu.Show();
         }
 
-        public override void Update()
-        {
-        }
-
         protected override void Exit()
         {
             _startupMenu.ActionFinished -= Exit;

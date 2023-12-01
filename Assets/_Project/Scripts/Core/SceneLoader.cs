@@ -6,14 +6,16 @@ namespace _Project.Scripts.Core
 {
     public interface ISceneLoader
     {
-        UniTaskVoid LoadSceneAsync(int sceneIndex);
+        UniTask LoadSceneAsync(int sceneIndex);
     }
     
     public class SceneLoader: MonoBehaviour, ISceneLoader
     {
-        public async UniTaskVoid LoadSceneAsync(int sceneIndex)
+        public async UniTask LoadSceneAsync(int sceneIndex)
         {
+            Debug.LogWarning("Load1");
             await SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
+            Debug.LogWarning("Load2");
         }
     }
 }
