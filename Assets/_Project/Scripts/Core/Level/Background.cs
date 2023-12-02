@@ -1,85 +1,39 @@
-﻿using System;
+﻿using _Project.Scripts.Core;
+using _Project.Scripts.GameServices;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class Background : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    private const string TEXTURE_PROPERTY_NAME = "_MainTex";
     
-    public event Action<Background> OutOfScreen;
-    
-    private Camera mainCamera;
-    private Renderer spriteRenderer;
-
-    private bool _isOutSide;
-    
-    private bool _alreadyOutOfScreen;
-    private bool _hasAlreadyEnteredOnce;
+    private GameSettings _gameSettings;
+    private Renderer _spriteRenderer;
     
     private void Awake()
     {
-        mainCamera = Camera.main;
-        spriteRenderer = GetComponent<Renderer>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        Services.WaitFor<IGameSettingsProvider>(SetGameSettings);
     }
 
-    private void OnEnable()
+    private void SetGameSettings(IGameSettingsProvider provider)
     {
-        OutOfScreen = null;
-        _alreadyOutOfScreen = false;
-        _hasAlreadyEnteredOnce = false;
+        _gameSettings = provider.GameSettings;
     }
 
     void Update()
     {
-        Move();
-        
-        CheckIfEnteredOnce();
-
-        if (!_hasAlreadyEnteredOnce || _alreadyOutOfScreen )
+        if (_gameSettings == null)
         {
             return;
         }
-
-        if (!IsSpriteOutOfScreen()) 
-            return;
         
-        _alreadyOutOfScreen = true;
-        OutOfScreen?.Invoke(this);
+        Move();
     }
 
     private void Move()
     {
-        if (_alreadyOutOfScreen)
-        {
-            return;
-        }
-        
-        var moveAmount = Vector2.left * (speed * Time.deltaTime);
-        transform.Translate(moveAmount);
-    }
-
-    private void CheckIfEnteredOnce()
-    {
-        if (!IsSpriteOutOfScreen())
-        {
-            if (!_hasAlreadyEnteredOnce)
-            {
-                _hasAlreadyEnteredOnce = true;
-            }
-        }
-    }
-
-    private bool IsSpriteOutOfScreen()
-    {
-        if (spriteRenderer.isVisible)
-        {
-            // If the sprite is visible, check if it's outside the camera's view
-            Plane[] planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
-            return !GeometryUtility.TestPlanesAABB(planes, spriteRenderer.bounds);
-        }
-        else
-        {
-            // If the sprite is not visible, consider it out of the screen
-            return true;
-        }
+        _spriteRenderer.material.SetTextureOffset(TEXTURE_PROPERTY_NAME,  Vector2.right * (_gameSettings.BackgroundSpeed * Time.time));
     }
 }

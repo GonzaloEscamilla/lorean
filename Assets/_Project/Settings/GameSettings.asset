@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   levelSceneIndex: 1
+  backgroundSpeed: 0.2
+  treeLayerSpeed: 0.64

@@ -1,6 +1,11 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using _Project.Scripts.Core;
+using _Project.Scripts.GameServices;
 using UnityEngine;
 using UnityEngine.Pool;
+using Random = UnityEngine.Random;
 
 public class LevelBackgroundController : MonoBehaviour
 {
@@ -8,25 +13,35 @@ public class LevelBackgroundController : MonoBehaviour
     private Transform spawnPoint;
 
     [SerializeField] 
-    private Background firstBackgroundSprite;
+    private BackgroundObject backgroundObjectPrefab;
     
     [SerializeField] 
-    private Background secondBackgroundSprite;
+    private BackgroundLayer _treesLayer;
     
-    [SerializeField] 
-    private Background backgroundPrefab;
+    private ObjectPool<BackgroundObject> _backgroundsPool;
 
-    private ObjectPool<Background> _backgroundsPool;
-
-    private void Start()
+    private GameSettings _gameSettings;
+    private bool _isInitialized;
+    
+    private void Awake()
     {
-        firstBackgroundSprite.OutOfScreen += OnFirstBackgroundOutOfScreen;
-        secondBackgroundSprite.OutOfScreen += OnSecondBackgroundOutOfScreen;
+        Services.WaitFor<IGameSettingsProvider>(SetGameSettings);
+    }
+
+    private void SetGameSettings(IGameSettingsProvider settingsProvider)
+    {
+        _gameSettings = settingsProvider.GameSettings;
+
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         
-        _backgroundsPool = new ObjectPool<Background>(
+        _backgroundsPool = new ObjectPool<BackgroundObject>(
             () =>
             {
-                return Instantiate(backgroundPrefab);
+                return Instantiate(backgroundObjectPrefab);
             },
             background =>
             {
@@ -44,34 +59,48 @@ public class LevelBackgroundController : MonoBehaviour
             5,
             20
         );
-    }
-
-    private void OnFirstBackgroundOutOfScreen(Background firstBackground)
-    {
-        firstBackgroundSprite.OutOfScreen -= OnFirstBackgroundOutOfScreen;
-        SpawnBackground();
         
-        Destroy(firstBackgroundSprite.gameObject);
-    }
+        StartCoroutine(SpawningTrees());
 
-    private void OnSecondBackgroundOutOfScreen(Background secondBackground)
+        _isInitialized = true;
+    }
+    private void Update()
     {
-        secondBackgroundSprite.OutOfScreen -= OnSecondBackgroundOutOfScreen;
-        SpawnBackground();
+        if (!_isInitialized)
+        {
+            return;
+        }
         
-        Destroy(secondBackgroundSprite.gameObject);
-    }
-    
-    private void SpawnBackground()
-    {
-        var newBackground = _backgroundsPool.Get();
-        newBackground.OutOfScreen += OnBackgroundOutOfScreen;
-        newBackground.transform.position = spawnPoint.transform.position + new Vector3(-0.01f,0,0);
+        UpdateTreeLayer();
     }
 
-    private void OnBackgroundOutOfScreen(Background background)
+    /// <summary>
+    /// Any object that moves righ behind the wall.
+    /// </summary>
+    /// <exception cref="NotImplementedException"></exception>
+    private void UpdateTreeLayer()
     {
-        _backgroundsPool.Release(background);
-        SpawnBackground();
+        _treesLayer.CurrentSpeed = _gameSettings.TreeLayerSpeed;
+    }
+
+    private IEnumerator SpawningTrees()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(2.5f, 5f));
+            
+            var newBackgroundObject = _backgroundsPool.Get();
+            newBackgroundObject.transform.position = spawnPoint.position;
+            newBackgroundObject.OutOfScreen += OnOutOfScreen;
+            
+            newBackgroundObject.transform.SetParent(_treesLayer.transform);
+        }
+    }
+
+    private void OnOutOfScreen(BackgroundObject objectOutOfScreen)
+    {
+        objectOutOfScreen.OutOfScreen -= OnOutOfScreen;
+
+        _backgroundsPool.Release(objectOutOfScreen);
     }
 }
