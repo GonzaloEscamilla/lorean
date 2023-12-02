@@ -1,5 +1,4 @@
-﻿using _Project.Scripts.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace _Project.Scripts.GameServices
 {

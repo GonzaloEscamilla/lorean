@@ -1,7 +1,7 @@
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace _Project.Scripts.Utilities
+namespace _Project.Scripts.GameServices
 {
     [AddComponentMenu("ND/Services/Logger")]
     public class Logger : MonoBehaviour, IDebug

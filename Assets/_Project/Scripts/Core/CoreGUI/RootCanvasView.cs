@@ -1,9 +1,8 @@
-﻿using _Project.Scripts.Core.CoreGUI;
-using _Project.Scripts.Utilities.WebGL;
+﻿using _Project.Scripts.Utilities.WebGL;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Core.Menues
+namespace _Project.Scripts.Core.CoreGUI
 {
     public class RootCanvasView : MonoBehaviour, IRootCanvasProvider
     {

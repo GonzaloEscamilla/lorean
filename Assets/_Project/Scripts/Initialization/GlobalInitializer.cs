@@ -5,12 +5,11 @@ using _Project.Scripts.GameServices;
 using _Project.Scripts.Login;
 using _Project.Scripts.Telemetry;
 using _Project.Scripts.Utilities;
-using Core.Menues;
 using Cysharp.Threading.Tasks;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using UnityEngine;
-using Logger = _Project.Scripts.Utilities.Logger;
+using Logger = _Project.Scripts.GameServices.Logger;
 
 namespace _Project.Scripts.Initialization
 {

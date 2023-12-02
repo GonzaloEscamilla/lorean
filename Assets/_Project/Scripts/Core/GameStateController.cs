@@ -1,7 +1,6 @@
 ﻿using System;
 using _Project.Scripts.Core.GameStates;
 using _Project.Scripts.GameServices;
-using _Project.Scripts.Utilities;
 using UnityEngine;
 
 namespace _Project.Scripts.Core

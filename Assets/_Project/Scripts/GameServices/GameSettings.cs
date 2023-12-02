@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace _Project.Scripts.Core
+namespace _Project.Scripts.GameServices
 {
     [CreateAssetMenu(menuName = "ND/GameSettings", fileName = "GameSettings", order = 0)]
     public class GameSettings: ScriptableObject
