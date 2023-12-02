@@ -24,9 +24,7 @@ namespace _Project.Scripts.Core.GameStates
 
         private async UniTaskVoid LoadLevel()
         {
-            _debug.LogWarning("Here");
             await _sceneLoader.LoadSceneAsync(_gameSettings.LevelSceneIndex);
-            _debug.LogWarning("Here1");
             _screenTransition.Transition(ScreenTransitionType.In);
         }
         

@@ -10,7 +10,12 @@ namespace _Project.Scripts.Core.CoreGUI
         private CanvasGroup fadeCanvas;
 
         private Tweener tweener;
-        
+
+        private void Awake()
+        {
+            fadeCanvas.alpha = 1;
+        }
+
         public void Transition(ScreenTransitionType type, Action callback = null)
         {
             switch (type)

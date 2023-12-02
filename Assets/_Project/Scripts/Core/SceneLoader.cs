@@ -13,9 +13,7 @@ namespace _Project.Scripts.Core
     {
         public async UniTask LoadSceneAsync(int sceneIndex)
         {
-            Debug.LogWarning("Load1");
             await SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
-            Debug.LogWarning("Load2");
         }
     }
 }
