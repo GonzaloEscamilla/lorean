@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using _Project.Scripts.GameServices;
 using UnityEngine;
@@ -17,8 +16,11 @@ namespace _Project.Scripts.Core.Gameplay
     
         [SerializeField] 
         private BackgroundLayer _treesLayer;
-    
-        private ObjectPool<BackgroundObject> _backgroundsPool;
+
+        [SerializeField] 
+        private BackgroundLayer midGroundLayer;
+        
+        private ObjectPool<BackgroundObject> _treesPool;
 
         private GameSettings _gameSettings;
         private bool _isInitialized;
@@ -38,7 +40,7 @@ namespace _Project.Scripts.Core.Gameplay
         private void Initialize()
         {
         
-            _backgroundsPool = new ObjectPool<BackgroundObject>(
+            _treesPool = new ObjectPool<BackgroundObject>(
                 () =>
                 {
                     return Instantiate(backgroundObjectPrefab);
@@ -71,25 +73,17 @@ namespace _Project.Scripts.Core.Gameplay
                 return;
             }
         
-            UpdateTreeLayer();
-        }
-
-        /// <summary>
-        /// Any object that moves righ behind the wall.
-        /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
-        private void UpdateTreeLayer()
-        {
             _treesLayer.CurrentSpeed = _gameSettings.TreeLayerSpeed;
+            midGroundLayer.CurrentSpeed = _gameSettings.TreeLayerSpeed; //Note: Define its own setting.
         }
-
+        
         private IEnumerator SpawningTrees()
         {
             while (true)
             {
                 yield return new WaitForSeconds(Random.Range(2.5f, 5f));
             
-                var newBackgroundObject = _backgroundsPool.Get();
+                var newBackgroundObject = _treesPool.Get();
                 newBackgroundObject.transform.position = spawnPoint.position;
                 newBackgroundObject.OutOfScreen += OnOutOfScreen;
             
@@ -101,7 +95,7 @@ namespace _Project.Scripts.Core.Gameplay
         {
             objectOutOfScreen.OutOfScreen -= OnOutOfScreen;
 
-            _backgroundsPool.Release(objectOutOfScreen);
+            _treesPool.Release(objectOutOfScreen);
         }
     }
 }
