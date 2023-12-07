@@ -16,5 +16,9 @@ MonoBehaviour:
   backgroundSpeed: 0.2
   treeLayerSpeed: 0.64
   characterBaseSpeed: 2
-  mapXBounds: {x: -1.25, y: 1.15}
-  mapYBounds: {x: -0.81, y: -0.32}
+  characterJumpForce: 0.4
+  characterJumpDuration: 0.6
+  characterJumpEaseType: 1
+  characterShadowMinSize: 0.45
+  characterShadowOutEaseType: 6
+  characterShadowInEaseType: 8

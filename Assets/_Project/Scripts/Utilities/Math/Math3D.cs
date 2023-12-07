@@ -37,6 +37,11 @@ namespace _Project.Scripts.Utilities.Math
 			return new Vector2(vector3.x, vector3.z);
 		}
 		
+		public static Vector2 XY(this Vector3 vector3)
+		{
+			return new Vector2(vector3.x, vector3.y);
+		}
+		
 		public static Vector3[] GetOrthonormalDistribution(Vector3 center, Vector3 forward, int amountOfPoints, float gap, Vector3 normal, float offset)
 		{
 			Vector3 directrix = (forward - center);

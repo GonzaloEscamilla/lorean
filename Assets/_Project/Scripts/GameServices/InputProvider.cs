@@ -37,6 +37,11 @@ namespace _Project.Scripts.GameServices
                 direction += Vector2.right;
             }
             
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                JumpInputPressed?.Invoke();
+            }
+            
             InputDirectionChanged?.Invoke(direction.normalized);
         }
     }
