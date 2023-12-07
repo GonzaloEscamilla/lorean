@@ -29,6 +29,9 @@ namespace _Project.Scripts.Initialization
 
         [SerializeField] 
         private SceneLoader sceneLoader;
+
+        [SerializeField] 
+        private InputProvider inputProvider;
         
         [SerializeField] 
         private Logger logger;
@@ -92,6 +95,8 @@ namespace _Project.Scripts.Initialization
 
             IMenuInstanceProvider menuInstanceProvider = new MenuInstanceFactory();
             Services.Add<IMenuInstanceProvider>(menuInstanceProvider);
+            
+            Services.Add<IInputProvider>(inputProvider);
         }
     }
 }

@@ -4,16 +4,34 @@ using UnityEngine;
 
 namespace _Project.Scripts.Core.Gameplay.Character
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class CharacterController : MonoBehaviour
     {
         [SerializeField] 
         private SpriteRenderer renderer;
 
+        private IInputProvider _inputProvider;
         private GameSettings _gameSettings;
+        private Rigidbody2D _rigidbody2D;
 
+        private Vector2 _currentInputDirection;
+        
         private void Awake()
         {
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+            Services.WaitFor<IInputProvider>(SetInputProvider);
             Services.WaitFor<IGameSettingsProvider>(SetGameSettings);
+        }
+
+        private void SetInputProvider(IInputProvider inputProvider)
+        {
+            _inputProvider = inputProvider;
+            _inputProvider.InputDirectionChanged += OnInputDirectionChanged;
+        }
+
+        private void OnInputDirectionChanged(Vector2 inputDirection)
+        {
+            _currentInputDirection = inputDirection;
         }
 
         private void SetGameSettings(IGameSettingsProvider provider)
@@ -21,45 +39,16 @@ namespace _Project.Scripts.Core.Gameplay.Character
             _gameSettings = provider.GameSettings;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            Vector2 direction = Vector2.zero;
-            
-            if (Input.GetKey(KeyCode.W))
-            {
-                direction += Vector2.up;
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                direction += Vector2.left;
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                direction += Vector2.down;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                direction += Vector2.right;
-            }
-            
-            Move(direction);
+            Move();            
         }
 
-        public void Move(Vector2 direction)
+        public void Move()
         {
-            var movement = direction.normalized * (_gameSettings.CharacterBaseSpeed * Time.deltaTime);
-
-            var lastPosition = transform.position;            
-            
-            transform.Translate(movement);
-
-            if (transform.position.x < _gameSettings.MapXBounds.x
-                || transform.position.x > _gameSettings.MapXBounds.y
-                || transform.position.y < _gameSettings.MapYBounds.x
-                || transform.position.y > _gameSettings.MapYBounds.y)
-            {
-                transform.position = lastPosition;
-            }
+            var movement = _currentInputDirection * _gameSettings.CharacterBaseSpeed;
+            //_rigidbody2D.velocity = movement;
+            _rigidbody2D.AddForce(movement, ForceMode2D.Impulse);
         }
 
         public void Jump()

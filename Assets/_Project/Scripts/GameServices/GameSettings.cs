@@ -20,7 +20,7 @@ namespace _Project.Scripts.GameServices
         [Title("Character")] 
         [SerializeField]
         private float characterBaseSpeed;
-
+        
         [SerializeField]
         private Vector2 mapXBounds;
         
