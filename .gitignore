@@ -16,6 +16,10 @@
 # User Local Files
 /_private/
 
+# User Local Files
+Assets/_private/
+Assets/_private.meta
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
