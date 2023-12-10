@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   levelSceneIndex: 1
-  backgroundSpeed: 0.2
-  treeLayerSpeed: 0.64
+  backgroundSpeed: 1
+  treeLayerSpeed: 1
   characterBaseSpeed: 2
   characterJumpForce: 0.4
   characterJumpDuration: 0.6
