@@ -1,20 +1,31 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using _Project.Scripts.GameServices;
+using UnityEngine;
+using UnityEngine.Pool;
 
 namespace _Project.Scripts.Core.Gameplay
 {
-    public class BackgroundLayer : MonoBehaviour
+    public abstract class BackgroundLayer : MonoBehaviour
     {
-        public float CurrentSpeed { get; set; }
-    
-        private void Update()
+        [SerializeField] protected GameObject backgroundObjectPrefab;
+        
+        public abstract float CurrentSpeed { get; set; }
+        protected abstract ObjectPool<Background> _objectPool { get; set; }
+        protected List<Background> _activeBackgrounds = new ();
+        protected GameSettings _gameSettings;
+        
+        private void Awake()
         {
-            Move();
+            Services.WaitFor<IGameSettingsProvider>(SetGameSettings);
         }
 
-        private void Move()
+        private void SetGameSettings(IGameSettingsProvider settingsProvider)
         {
-            var movement = Vector2.left * (CurrentSpeed * Time.deltaTime);
-            transform.Translate(movement);
+            _gameSettings = settingsProvider.GameSettings;
+            
+            Init();
         }
+
+        protected abstract void Init();
     }
 }

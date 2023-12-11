@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b5413c3e1a4f9a8a51d037b6a86ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xFinalPosition: 0
-  xOutOfScreenPosition: -4.8
-  xSpawnPosition: 6.4
   offset: 6.4
+  xMiddlePosition: {x: 0, y: 0, z: 0}
+  xOutOfScreenPosition: {x: -6.4, y: 0, z: 0}
+  spawnPosition: {x: 6.4, y: 0, z: 0}
