@@ -19,12 +19,12 @@ namespace _Project.Scripts.Core.Gameplay
                 }
             }
         }
-        protected override ObjectPool<Background> _objectPool { get; set; }
+        protected override ObjectPool<BackgroundObject> _objectPool { get; set; }
         
         protected override void Init()
         {
-            _objectPool =  new ObjectPool<Background>(
-                () => Instantiate(backgroundObjectPrefab).GetComponent<Background>(),
+            _objectPool =  new ObjectPool<BackgroundObject>(
+                () => Instantiate(backgroundObjectPrefab).GetComponent<BackgroundObject>(),
                 background => background.Init(),
                 background => background.ShutDown(),
                 background => Destroy(background.gameObject),
@@ -50,7 +50,7 @@ namespace _Project.Scripts.Core.Gameplay
             }
         }
         
-        private void TreeOutOfScreenPositionReached(Background outOfScreenTree)
+        private void TreeOutOfScreenPositionReached(BackgroundObject outOfScreenTree)
         {
             outOfScreenTree.MiddleScreenPositionReached -= TreeOutOfScreenPositionReached;
 

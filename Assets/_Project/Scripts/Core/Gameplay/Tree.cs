@@ -2,7 +2,7 @@
 
 namespace _Project.Scripts.Core.Gameplay
 {
-    public class Tree : Background
+    public class Tree : BackgroundObject
     {
     }
 }
