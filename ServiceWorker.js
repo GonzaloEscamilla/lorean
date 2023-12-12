@@ -1,4 +1,4 @@
-const cacheName = "DefaultCompany-nuevo-destino-0.0.34";
+const cacheName = "DefaultCompany-nuevo-destino-0.0.35";
 const contentToCache = [
     "Build/WebGL.loader.js",
     "Build/WebGL.framework.js.unityweb",
