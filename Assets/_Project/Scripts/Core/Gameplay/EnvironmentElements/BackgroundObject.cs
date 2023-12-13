@@ -1,25 +1,38 @@
 ﻿using System;
+using _Project.Scripts.GameServices;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace _Project.Scripts.Core.Gameplay
+namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public abstract class BackgroundObject : MonoBehaviour
     {
         [SerializeField] protected SpriteRenderer spriteRenderer;
-        [SerializeField] private float offset;
-        [SerializeField] private Vector3 xMiddlePosition;
         [SerializeField] protected Vector3 xOutOfScreenPosition;
-        [FormerlySerializedAs("xSpawnPosition")] [SerializeField] protected Vector3 spawnPosition;
+        [SerializeField] protected Vector3 spawnPosition;
+        [SerializeField] protected Transform screenPositionReference;
+        [SerializeField] private float snapOffset;
+        [SerializeField] private Vector3 xMiddlePosition;
         
         public Action<BackgroundObject> MiddleScreenPositionReached;
         public Action<BackgroundObject> OutOfScreenPositionReached; 
 
         public float CurrentSpeed { get; set; }
 
+        protected IPlaygroundProvider _playgroundProvider;
+        
         private bool _middleScreenAlreadyReached;
         private bool _outOfScreenPositionAlreadyReached;
+
+        private void Awake()
+        {
+            Services.WaitFor<IPlaygroundProvider>(SetPlaygroundProvider);
+        }
+
+        private void SetPlaygroundProvider(IPlaygroundProvider playgroundProvider)
+        {
+            _playgroundProvider = playgroundProvider;
+        }
 
         private void OnEnable()
         {
@@ -51,7 +64,12 @@ namespace _Project.Scripts.Core.Gameplay
 
         public void SnapTo(BackgroundObject lastSpawnedBackground)
         {
-            transform.position = lastSpawnedBackground.transform.position + new Vector3(offset,0,0);
+            transform.position = lastSpawnedBackground.transform.position + new Vector3(snapOffset,0,0);
+        }
+        
+        public void UpdateSortingOrder()
+        {
+            spriteRenderer.sortingOrder = _playgroundProvider.GetOrderInLayer(this.screenPositionReference.position);
         }
         
         private void Update()

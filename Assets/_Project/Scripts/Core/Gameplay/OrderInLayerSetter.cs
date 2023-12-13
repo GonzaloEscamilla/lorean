@@ -1,22 +1,23 @@
-using System;
-using _Project.Scripts.Core.Gameplay;
 using _Project.Scripts.GameServices;
 using UnityEngine;
 
-public class OrderInLayerSetter : MonoBehaviour
+namespace _Project.Scripts.Core.Gameplay
 {
-    [SerializeField] 
-    private Transform objectToSet;
+    public class OrderInLayerSetter : MonoBehaviour
+    {
+        [SerializeField] 
+        private Transform objectToSet;
 
-    private IObjectsOrderInLayerProvider _orderInLayerProvider;
+        private IPlaygroundProvider _orderInLayerProvider;
     
-    private void Awake()
-    {
-        Services.WaitFor<IObjectsOrderInLayerProvider>(SetOrderProvider);
-    }
+        private void Awake()
+        {
+            Services.WaitFor<IPlaygroundProvider>(SetOrderProvider);
+        }
 
-    private void SetOrderProvider(IObjectsOrderInLayerProvider orderInLayerProvider)
-    {
-        _orderInLayerProvider = orderInLayerProvider;
+        private void SetOrderProvider(IPlaygroundProvider orderInLayerProvider)
+        {
+            _orderInLayerProvider = orderInLayerProvider;
+        }
     }
 }

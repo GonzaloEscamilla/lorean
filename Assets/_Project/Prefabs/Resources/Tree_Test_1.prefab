@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3518530012716272860}
-  offset: 0
-  xMiddlePosition: {x: 0, y: 0, z: 0}
   xOutOfScreenPosition: {x: -4, y: 0, z: 0}
   spawnPosition: {x: 3, y: 0.89, z: 0}
+  screenPositionReference: {fileID: 5498653038918182039}
+  snapOffset: 0
+  xMiddlePosition: {x: 0, y: 0, z: 0}

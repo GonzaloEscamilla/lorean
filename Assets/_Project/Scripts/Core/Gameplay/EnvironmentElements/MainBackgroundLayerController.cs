@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Pool;
 
-namespace _Project.Scripts.Core.Gameplay
+namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
 {
     public class MainBackgroundLayerController : BackgroundLayer
     {

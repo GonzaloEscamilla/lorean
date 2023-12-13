@@ -26,7 +26,7 @@ namespace _Project.Scripts.Core.Gameplay.Character
         private Vector2 _currentInputDirection;
         private bool _canJump = true;
 
-        private IObjectsOrderInLayerProvider _orderInLayerProvider;
+        private IPlaygroundProvider _orderInLayerProvider;
         
         private void Awake()
         {
@@ -34,10 +34,10 @@ namespace _Project.Scripts.Core.Gameplay.Character
             
             Services.WaitFor<IGameSettingsProvider>(SetGameSettings);
             Services.WaitFor<IInputProvider>(SetInputProvider);
-            Services.WaitFor<IObjectsOrderInLayerProvider>(SetOrderInLayerProvider);
+            Services.WaitFor<IPlaygroundProvider>(SetOrderInLayerProvider);
         }
 
-        private void SetOrderInLayerProvider(IObjectsOrderInLayerProvider orderInLayerProvider)
+        private void SetOrderInLayerProvider(IPlaygroundProvider orderInLayerProvider)
         {
             _orderInLayerProvider = orderInLayerProvider;
         }

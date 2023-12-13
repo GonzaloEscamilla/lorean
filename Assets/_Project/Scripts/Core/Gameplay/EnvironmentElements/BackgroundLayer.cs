@@ -2,9 +2,8 @@
 using _Project.Scripts.GameServices;
 using UnityEngine;
 using UnityEngine.Pool;
-using UnityEngine.Serialization;
 
-namespace _Project.Scripts.Core.Gameplay
+namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
 {
     public abstract class BackgroundLayer : MonoBehaviour
     {
@@ -15,10 +14,17 @@ namespace _Project.Scripts.Core.Gameplay
         protected abstract ObjectPool<BackgroundObject> _objectPool { get; set; }
         protected List<BackgroundObject> _activeBackgrounds = new ();
         protected GameSettings _gameSettings;
+        protected IPlaygroundProvider _playgroundProvider;
         
         private void Awake()
         {
             Services.WaitFor<IGameSettingsProvider>(SetGameSettings);
+            Services.WaitFor<IPlaygroundProvider>(SetPlaygroundProvider);
+        }
+
+        private void SetPlaygroundProvider(IPlaygroundProvider playgrounProvider)
+        {
+            _playgroundProvider = playgrounProvider;
         }
 
         private void SetGameSettings(IGameSettingsProvider settingsProvider)

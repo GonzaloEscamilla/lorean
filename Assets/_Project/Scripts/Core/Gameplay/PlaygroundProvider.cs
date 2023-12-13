@@ -1,19 +1,23 @@
-﻿using System;
-using _Project.Scripts.GameServices;
+﻿using _Project.Scripts.GameServices;
 using UnityEngine;
 
 namespace _Project.Scripts.Core.Gameplay
 {
-    public interface IObjectsOrderInLayerProvider
+    public interface IPlaygroundProvider
     {
         public int GetOrderInLayer(Vector2 screenPosition);
+        public float UpperGameplayLimit { get; }
+        public float LowerGameplayLimit { get; }
     }
 
-    public class ObjectsOrderInLayerProvider : MonoBehaviour, IObjectsOrderInLayerProvider
+    public class PlaygroundProvider : MonoBehaviour, IPlaygroundProvider
     {
         [SerializeField] private Transform upperPivot;
         [SerializeField] private Transform lowerPivot;
 
+        public float UpperGameplayLimit => upperPivot.transform.position.y;
+        public float LowerGameplayLimit => lowerPivot.transform.position.y;
+        
         private const int MIN_ORDER_IN_LAYER = 0;
         private const int MAX_ORDER_IN_LAYER = 100;
 
@@ -33,7 +37,7 @@ namespace _Project.Scripts.Core.Gameplay
 
         private void Awake()
         {
-            Services.Add<IObjectsOrderInLayerProvider>(this);
+            Services.Add<IPlaygroundProvider>(this);
         }
     }
 }

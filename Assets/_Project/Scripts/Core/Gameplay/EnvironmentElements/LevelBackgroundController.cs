@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using _Project.Scripts.GameServices;
 using UnityEngine;
 
-namespace _Project.Scripts.Core.Gameplay
+namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
 {
     public class LevelBackgroundController : MonoBehaviour
     {
         [SerializeField] private TreesLayerController treesLayerController;
         [SerializeField] private MainBackgroundLayerController mainBackgroundLayerController;
+        [SerializeField] private InteractableObjectsLayerController interactableObjectsLayerController;
         
         private List<BackgroundObject> _backgroundObjects = new();
         private BackgroundObject _lastSpawnedBackground;
@@ -40,6 +41,7 @@ namespace _Project.Scripts.Core.Gameplay
         
             treesLayerController.CurrentSpeed = _gameSettings.TreeLayerSpeed;
             mainBackgroundLayerController.CurrentSpeed = _gameSettings.BackgroundSpeed;
+            interactableObjectsLayerController.CurrentSpeed = _gameSettings.BackgroundSpeed;
             
             foreach (var background in _backgroundObjects)
             {
