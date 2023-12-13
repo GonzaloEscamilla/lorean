@@ -7,6 +7,7 @@ namespace _Project.Scripts.Core.Gameplay
     [RequireComponent(typeof(SpriteRenderer))]
     public abstract class BackgroundObject : MonoBehaviour
     {
+        [SerializeField] protected SpriteRenderer spriteRenderer;
         [SerializeField] private float offset;
         [SerializeField] private Vector3 xMiddlePosition;
         [SerializeField] protected Vector3 xOutOfScreenPosition;
@@ -35,13 +36,15 @@ namespace _Project.Scripts.Core.Gameplay
             _outOfScreenPositionAlreadyReached = false;
         }
 
-        public void Init()
+        public virtual void Init(string sortingLayer = "Default")
         {
             gameObject.SetActive(true);
             transform.position = spawnPosition;
+            
+            spriteRenderer.sortingLayerName = sortingLayer;
         }
-
-        public void ShutDown()
+        
+        public virtual void ShutDown()
         {
             gameObject.SetActive(false);
         }

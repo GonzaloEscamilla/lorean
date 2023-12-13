@@ -24,8 +24,8 @@ namespace _Project.Scripts.Core.Gameplay
         protected override void Init()
         {
             _objectPool =  new ObjectPool<BackgroundObject>(
-                () => Instantiate(backgroundObjectPrefab).GetComponent<BackgroundObject>(),
-                background => background.Init(),
+                () => Instantiate(_backgroundObjectPrefab).GetComponent<BackgroundObject>(),
+                background => background.Init(GameSortingLayers.GetSortingLayer(_gameSortingLayer)),
                 background => background.ShutDown(),
                 background => Destroy(background.gameObject),
                 false,
@@ -34,7 +34,7 @@ namespace _Project.Scripts.Core.Gameplay
             
             StartCoroutine(SpawningTrees());
         }
-        
+
         private IEnumerator SpawningTrees()
         {
             while (true)

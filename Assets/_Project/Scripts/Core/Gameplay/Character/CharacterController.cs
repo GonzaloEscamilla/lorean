@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.GameServices;
 using UnityEngine;
 
@@ -10,6 +11,12 @@ namespace _Project.Scripts.Core.Gameplay.Character
         private SpriteRenderer carRenderer;
 
         [SerializeField] 
+        private SpriteRenderer shadowRenderer;
+        
+        [SerializeField] 
+        private Transform screenPositionReference;
+        
+        [SerializeField] 
         private CharacterJumpController jumpController;
 
         private IInputProvider _inputProvider;
@@ -18,12 +25,21 @@ namespace _Project.Scripts.Core.Gameplay.Character
 
         private Vector2 _currentInputDirection;
         private bool _canJump = true;
+
+        private IObjectsOrderInLayerProvider _orderInLayerProvider;
         
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            
             Services.WaitFor<IGameSettingsProvider>(SetGameSettings);
             Services.WaitFor<IInputProvider>(SetInputProvider);
+            Services.WaitFor<IObjectsOrderInLayerProvider>(SetOrderInLayerProvider);
+        }
+
+        private void SetOrderInLayerProvider(IObjectsOrderInLayerProvider orderInLayerProvider)
+        {
+            _orderInLayerProvider = orderInLayerProvider;
         }
 
         private void SetGameSettings(IGameSettingsProvider provider)
@@ -48,6 +64,18 @@ namespace _Project.Scripts.Core.Gameplay.Character
             Jump();
         }
 
+        private void Update()
+        {
+            if (_orderInLayerProvider == null)
+            {
+                return;
+            }
+
+            var position = screenPositionReference.position;
+            carRenderer.sortingOrder = _orderInLayerProvider.GetOrderInLayer(position);
+            shadowRenderer.sortingOrder = _orderInLayerProvider.GetOrderInLayer(position) - 1;
+        }
+        
         private void FixedUpdate()
         {
             Move();            

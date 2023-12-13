@@ -2,12 +2,14 @@
 using _Project.Scripts.GameServices;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Core.Gameplay
 {
     public abstract class BackgroundLayer : MonoBehaviour
     {
-        [SerializeField] protected GameObject backgroundObjectPrefab;
+        [SerializeField] protected GameSortingLayer _gameSortingLayer;
+        [SerializeField] protected GameObject _backgroundObjectPrefab;
         
         public abstract float CurrentSpeed { get; set; }
         protected abstract ObjectPool<BackgroundObject> _objectPool { get; set; }

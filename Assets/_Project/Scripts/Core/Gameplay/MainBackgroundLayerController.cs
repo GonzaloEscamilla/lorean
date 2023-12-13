@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Pool;
 
 namespace _Project.Scripts.Core.Gameplay
@@ -32,8 +31,8 @@ namespace _Project.Scripts.Core.Gameplay
         protected override void Init()
         {
             _objectPool =  new ObjectPool<BackgroundObject>(
-                () => Instantiate(backgroundObjectPrefab).GetComponent<BackgroundObject>(),
-                background => background.Init(),
+                () => Instantiate(_backgroundObjectPrefab).GetComponent<BackgroundObject>(),
+                background => background.Init(GameSortingLayers.GetSortingLayer(_gameSortingLayer)),
                 background => background.ShutDown(),
                 background => Destroy(background.gameObject),
                 false,
@@ -50,7 +49,7 @@ namespace _Project.Scripts.Core.Gameplay
 
             _lastSpawnedBackground = _secondBackground;
         }
-        
+
         private void OnFirstBackgroundMiddleScreenPositionReached(BackgroundObject obj)
         {
             _firstBackground.MiddleScreenPositionReached -= OnFirstBackgroundMiddleScreenPositionReached;

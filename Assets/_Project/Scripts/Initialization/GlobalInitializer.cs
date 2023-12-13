@@ -1,6 +1,7 @@
 using System;
 using _Project.Scripts.Core;
 using _Project.Scripts.Core.CoreGUI;
+using _Project.Scripts.Core.Gameplay;
 using _Project.Scripts.GameServices;
 using _Project.Scripts.Login;
 using _Project.Scripts.Telemetry;
@@ -32,7 +33,7 @@ namespace _Project.Scripts.Initialization
 
         [SerializeField] 
         private InputProvider inputProvider;
-        
+
         [SerializeField] 
         private Logger logger;
         
