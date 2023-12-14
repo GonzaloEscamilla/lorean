@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3291394158493646182}
   - component: {fileID: 1468660843871055812}
   m_Layer: 0
-  m_Name: Background_Large
+  m_Name: Background_Large_mock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

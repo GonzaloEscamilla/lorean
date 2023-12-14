@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -6,6 +7,8 @@ namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
 {
     public class TreesLayerController : BackgroundLayer
     {
+        [SerializeField] private List<BackgroundObject> previousTrees;
+        
         protected float _currentSpeed;
         public override float CurrentSpeed
         {
@@ -33,6 +36,12 @@ namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
                 20);
             
             StartCoroutine(SpawningTrees());
+
+            foreach (var tree in previousTrees)
+            {
+                _activeBackgrounds.Add(tree);
+                tree.OutOfScreenPositionReached += InitialTreeOutOfScreenPositionReached;
+            }
         }
 
         private IEnumerator SpawningTrees()
@@ -57,5 +66,13 @@ namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
             _objectPool.Release(outOfScreenTree);
             _activeBackgrounds.Remove(outOfScreenTree);
         }
+        
+        private void InitialTreeOutOfScreenPositionReached(BackgroundObject outOfScreenTree)
+        {
+            outOfScreenTree.MiddleScreenPositionReached -= InitialTreeOutOfScreenPositionReached;
+            _activeBackgrounds.Remove(outOfScreenTree);
+            Destroy(outOfScreenTree.gameObject);
+        }
+        
     }
 }
