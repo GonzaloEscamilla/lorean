@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4528209760009733907}
   - component: {fileID: 2417594785192031207}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GFXShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5257679539398396824}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ScreenPositionReference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 9008510729151366599}
   - component: {fileID: 4176651734746963564}
   - component: {fileID: 2469971306871575115}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GFXVehicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 9033166234072050952}
   - component: {fileID: 2276303152790841641}
   - component: {fileID: 7014694479354923148}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}

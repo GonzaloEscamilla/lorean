@@ -1,7 +1,10 @@
-﻿namespace _Project.Scripts.Core.GameStates
+﻿using _Project.Scripts.GameServices;
+
+namespace _Project.Scripts.Core.GameStates
 {
     public class Gameplay : GameState
     {
+        
         public Gameplay(GameStateController controller) : base(controller)
         {
         }

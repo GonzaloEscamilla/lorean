@@ -1,11 +1,9 @@
 using System;
 using _Project.Scripts.Core;
 using _Project.Scripts.Core.CoreGUI;
-using _Project.Scripts.Core.Gameplay;
 using _Project.Scripts.GameServices;
 using _Project.Scripts.Login;
 using _Project.Scripts.Telemetry;
-using _Project.Scripts.Utilities;
 using Cysharp.Threading.Tasks;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
@@ -34,6 +32,9 @@ namespace _Project.Scripts.Initialization
         [SerializeField] 
         private InputProvider inputProvider;
 
+        [SerializeField] 
+        private AudioManager audioManager;
+        
         [SerializeField] 
         private Logger logger;
         
@@ -98,6 +99,8 @@ namespace _Project.Scripts.Initialization
             Services.Add<IMenuInstanceProvider>(menuInstanceProvider);
             
             Services.Add<IInputProvider>(inputProvider);
+            
+            Services.Add<IGameAudio>(audioManager);
         }
     }
 }

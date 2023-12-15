@@ -9,12 +9,14 @@ namespace _Project.Scripts.Core.GameStates
         private ISceneLoader _sceneLoader;
         private IScreenTransitionService _screenTransition;
         private GameSettings _gameSettings;
+        private IGameAudio _gameAudio;
         
         public LoadingLevel(GameStateController controller) : base(controller)
         {
             _sceneLoader = Services.Get<ISceneLoader>();
             _gameSettings = Services.Get<IGameSettingsProvider>().GameSettings;
             _screenTransition = Services.Get<IScreenTransitionService>();
+            _gameAudio = Services.Get<IGameAudio>();
         }
 
         public override void Enter()
@@ -25,7 +27,8 @@ namespace _Project.Scripts.Core.GameStates
         private async UniTaskVoid LoadLevel()
         {
             await _sceneLoader.LoadSceneAsync(_gameSettings.LevelSceneIndex);
-            _screenTransition.Transition(ScreenTransitionType.In);
+            _gameAudio.PlayMainSong();
+            _screenTransition.Transition(ScreenTransitionType.In, Exit);
         }
         
         public override void Update()
@@ -34,6 +37,7 @@ namespace _Project.Scripts.Core.GameStates
 
         protected override void Exit()
         {
+            _controller.SwitchState<Gameplay>();
         }
     }
 }
