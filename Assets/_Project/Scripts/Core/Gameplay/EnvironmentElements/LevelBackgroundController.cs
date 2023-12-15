@@ -10,6 +10,21 @@ namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
         [SerializeField] private MainBackgroundLayerController mainBackgroundLayerController;
         [SerializeField] private InteractableObjectsLayerController interactableObjectsLayerController;
         [SerializeField] private BuildingsLayerController buildingsLayerController;
+        [SerializeField] private float currentBaseBackgroundSpeed;
+
+        public float CurrentBaseBackgroundSpeed
+        {
+            get => currentBaseBackgroundSpeed;
+            set
+            {
+                currentBaseBackgroundSpeed = value;
+
+                if (currentBaseBackgroundSpeed <= 0)
+                {
+                    currentBaseBackgroundSpeed = 0;
+                }
+            }
+        }
         
         private List<BackgroundObject> _backgroundObjects = new();
         private BackgroundObject _lastSpawnedBackground;
@@ -32,6 +47,8 @@ namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
         private void Initialize()
         {
             _isInitialized = true;
+
+            CurrentBaseBackgroundSpeed = _gameSettings.InitialBaseBackgroundSpeed;
         }
         private void Update()
         {
@@ -40,10 +57,10 @@ namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
                 return;
             }
 
-            buildingsLayerController.CurrentSpeed = _gameSettings.BuildingsLayerSpeed;
-            treesLayerController.CurrentSpeed = _gameSettings.TreeLayerSpeed;
-            mainBackgroundLayerController.CurrentSpeed = _gameSettings.BackgroundSpeed;
-            interactableObjectsLayerController.CurrentSpeed = _gameSettings.BackgroundSpeed;
+            buildingsLayerController.CurrentSpeed = CurrentBaseBackgroundSpeed + _gameSettings.BuildingsLayerSpeed;
+            treesLayerController.CurrentSpeed = CurrentBaseBackgroundSpeed + _gameSettings.TreeLayerSpeed;
+            mainBackgroundLayerController.CurrentSpeed = CurrentBaseBackgroundSpeed + _gameSettings.BackgroundSpeed;
+            interactableObjectsLayerController.CurrentSpeed = CurrentBaseBackgroundSpeed +_gameSettings.BackgroundSpeed;
             
             foreach (var background in _backgroundObjects)
             {

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   levelSceneIndex: 1
+  initialBaseBackgroundSpeed: 0
   backgroundSpeed: 1
   treeLayerSpeed: 0.97
   buildingsLayerSpeed: 0.8

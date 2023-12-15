@@ -13,6 +13,9 @@ namespace _Project.Scripts.GameServices
 
         [Title("Environment & Background")] 
         [SerializeField]
+        private float initialBaseBackgroundSpeed;
+        
+        [SerializeField]
         private float backgroundSpeed;
 
         [SerializeField]
@@ -56,6 +59,7 @@ namespace _Project.Scripts.GameServices
         private Ease characterShadowInEaseType;
         
         public int LevelSceneIndex => levelSceneIndex;
+        public float InitialBaseBackgroundSpeed => initialBaseBackgroundSpeed;
         public float BackgroundSpeed => backgroundSpeed;
         public float TreeLayerSpeed => treeLayerSpeed;
         public float BuildingsLayerSpeed => buildingsLayerSpeed;
