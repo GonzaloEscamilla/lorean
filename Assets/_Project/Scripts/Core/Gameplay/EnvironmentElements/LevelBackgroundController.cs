@@ -9,6 +9,7 @@ namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
         [SerializeField] private TreesLayerController treesLayerController;
         [SerializeField] private MainBackgroundLayerController mainBackgroundLayerController;
         [SerializeField] private InteractableObjectsLayerController interactableObjectsLayerController;
+        [SerializeField] private BuildingsLayerController buildingsLayerController;
         
         private List<BackgroundObject> _backgroundObjects = new();
         private BackgroundObject _lastSpawnedBackground;
@@ -38,7 +39,8 @@ namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
             {
                 return;
             }
-        
+
+            buildingsLayerController.CurrentSpeed = _gameSettings.BuildingsLayerSpeed;
             treesLayerController.CurrentSpeed = _gameSettings.TreeLayerSpeed;
             mainBackgroundLayerController.CurrentSpeed = _gameSettings.BackgroundSpeed;
             interactableObjectsLayerController.CurrentSpeed = _gameSettings.BackgroundSpeed;

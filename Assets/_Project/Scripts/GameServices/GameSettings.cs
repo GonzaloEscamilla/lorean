@@ -17,7 +17,10 @@ namespace _Project.Scripts.GameServices
 
         [SerializeField]
         private float treeLayerSpeed;
-
+        
+        [SerializeField]
+        private float buildingsLayerSpeed;
+        
         [Title("Character")] 
         [SerializeField]
         private float characterBaseSpeed;
@@ -43,6 +46,7 @@ namespace _Project.Scripts.GameServices
         public int LevelSceneIndex => levelSceneIndex;
         public float BackgroundSpeed => backgroundSpeed;
         public float TreeLayerSpeed => treeLayerSpeed;
+        public float BuildingsLayerSpeed => buildingsLayerSpeed;
         public float CharacterBaseSpeed => characterBaseSpeed;
         public float CharacterJumpForce => characterJumpForce;
         public float CharacterJumpDuration => characterJumpDuration;

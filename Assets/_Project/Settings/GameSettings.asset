@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelSceneIndex: 1
   backgroundSpeed: 1
-  treeLayerSpeed: 1
+  treeLayerSpeed: 0.97
+  buildingsLayerSpeed: 0.8
   characterBaseSpeed: 2
   characterJumpForce: 0.4
   characterJumpDuration: 0.6
