@@ -1,4 +1,5 @@
 using UnityEngine;
+using CharacterController = _Project.Scripts.Core.Gameplay.Character.CharacterController;
 
 namespace _Project.Scripts.Core.Gameplay.Interactables
 {
@@ -12,10 +13,11 @@ namespace _Project.Scripts.Core.Gameplay.Interactables
             // Check if the entering collider is on the specified layer
             if (((1 << other.gameObject.layer) & interactableMask) != 0)
             {
-                OnCharacterCollision();
+                CharacterController character = other.gameObject.GetComponent<CharacterController>();
+                OnCharacterCollision(character);
             }
         }
 
-        protected abstract void OnCharacterCollision();
+        protected abstract void OnCharacterCollision(CharacterController character);
     }
 }

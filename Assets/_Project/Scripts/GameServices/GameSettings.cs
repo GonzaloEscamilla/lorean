@@ -30,6 +30,18 @@ namespace _Project.Scripts.GameServices
         
         [SerializeField]
         private float characterJumpDuration;
+
+        [SerializeField] 
+        private float characterJumpForceMedium;
+        
+        [SerializeField] 
+        private float characterJumpDurationMedium;
+        
+        [SerializeField] 
+        private float characterJumpForceHigh;
+        
+        [SerializeField] 
+        private float characterJumpDurationHigh;
         
         [SerializeField]
         private Ease characterJumpEaseType;
@@ -54,5 +66,9 @@ namespace _Project.Scripts.GameServices
         public float CharacterShadowMinSize => characterShadowMinSize;
         public Ease CharacterShadowOutEaseType => characterShadowOutEaseType;
         public Ease CharacterShadowInEaseType => characterShadowInEaseType;
+        public float CharacterJumpForceMedium => characterJumpForceMedium;
+        public float CharacterJumpDurationMedium => characterJumpDurationMedium;
+        public float CharacterJumpForceHigh => characterJumpForceHigh;
+        public float CharacterJumpDurationHigh => characterJumpDurationHigh;
     }
 }

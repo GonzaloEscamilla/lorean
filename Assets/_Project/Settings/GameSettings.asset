@@ -19,6 +19,10 @@ MonoBehaviour:
   characterBaseSpeed: 2
   characterJumpForce: 0.4
   characterJumpDuration: 0.6
+  characterJumpForceMedium: 1
+  characterJumpDurationMedium: 1.5
+  characterJumpForceHigh: 3
+  characterJumpDurationHigh: 3.5
   characterJumpEaseType: 1
   characterShadowMinSize: 0.45
   characterShadowOutEaseType: 6

@@ -8,6 +8,7 @@ namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
     public abstract class BackgroundObject : MonoBehaviour
     {
         [SerializeField] protected SpriteRenderer spriteRenderer;
+        [SerializeField] protected SpriteRenderer shadowRenderer;
         [SerializeField] protected Vector3 xOutOfScreenPosition;
         [SerializeField] protected Vector3 spawnPosition;
         [SerializeField] protected Transform screenPositionReference;
@@ -55,6 +56,10 @@ namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
             transform.position = spawnPosition;
             
             spriteRenderer.sortingLayerName = sortingLayer;
+            if (shadowRenderer)
+            {
+                shadowRenderer.sortingLayerName = sortingLayer;
+            }
         }
         
         public virtual void ShutDown()
@@ -70,6 +75,11 @@ namespace _Project.Scripts.Core.Gameplay.EnvironmentElements
         public void UpdateSortingOrder()
         {
             spriteRenderer.sortingOrder = _playgroundProvider.GetOrderInLayer(this.screenPositionReference.position);
+
+            if (shadowRenderer)
+            {
+                shadowRenderer.sortingOrder = _playgroundProvider.GetOrderInLayer(this.screenPositionReference.position) - 1;
+            }
         }
         
         private void Update()

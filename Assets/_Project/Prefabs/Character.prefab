@@ -264,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carRenderer: {fileID: 4176651734746963564}
   shadowRenderer: {fileID: 2417594785192031207}
+  collider2D: {fileID: 7014694479354923148}
   screenPositionReference: {fileID: 5257679539398396824}
   jumpController: {fileID: 2469971306871575115}
 --- !u!50 &2276303152790841641

@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameSortingLayer: 2
-  _backgroundObjectPrefab: {fileID: 1857021997449489280, guid: f217fb7387685f14394185d6e6fe1e43, type: 3}
+  _backgroundObjectPrefab: {fileID: 679360620988665050, guid: 2b0802ee2f4446a40b16d435946a8538, type: 3}
 --- !u!1 &3916069902501621448
 GameObject:
   m_ObjectHideFlags: 0

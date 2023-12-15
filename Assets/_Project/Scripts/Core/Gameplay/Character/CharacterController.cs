@@ -1,4 +1,3 @@
-using System;
 using _Project.Scripts.GameServices;
 using UnityEngine;
 
@@ -12,6 +11,9 @@ namespace _Project.Scripts.Core.Gameplay.Character
 
         [SerializeField] 
         private SpriteRenderer shadowRenderer;
+
+        [SerializeField] 
+        private BoxCollider2D collider2D;
         
         [SerializeField] 
         private Transform screenPositionReference;
@@ -19,6 +21,8 @@ namespace _Project.Scripts.Core.Gameplay.Character
         [SerializeField] 
         private CharacterJumpController jumpController;
 
+        private float CurrentLife { get; set; }
+        
         private IInputProvider _inputProvider;
         private GameSettings _gameSettings;
         private Rigidbody2D _rigidbody2D;
@@ -35,6 +39,8 @@ namespace _Project.Scripts.Core.Gameplay.Character
             Services.WaitFor<IGameSettingsProvider>(SetGameSettings);
             Services.WaitFor<IInputProvider>(SetInputProvider);
             Services.WaitFor<IPlaygroundProvider>(SetOrderInLayerProvider);
+            
+            jumpController.Setup(this);
         }
 
         private void SetOrderInLayerProvider(IPlaygroundProvider orderInLayerProvider)
@@ -61,9 +67,47 @@ namespace _Project.Scripts.Core.Gameplay.Character
 
         private void OnJumpInputPressed()
         {
-            Jump();
+            Jump(JumpType.Low);
         }
 
+        
+        public void GetDamaged()
+        {
+            CurrentLife--;
+        }
+        
+        public void Push(Vector2 direction, float strength)
+        {
+            _rigidbody2D.AddForce(direction * strength, ForceMode2D.Impulse);
+        }
+
+        public void Jump(JumpType jumpType)
+        {
+            if (!_canJump)
+            {
+                return;
+            }
+
+            _canJump = false;
+            
+            jumpController.Jump(jumpType).JumpFinished += OnJumpFinished;
+            
+            void OnJumpFinished()
+            {
+                _canJump = true;
+            }
+        }
+        
+        public void EnableCollisions()
+        {
+            collider2D.enabled = true;
+        }
+        
+        public void DisableCollisions()
+        {
+            collider2D.enabled = false;
+        }
+        
         private void Update()
         {
             if (_orderInLayerProvider == null)
@@ -85,23 +129,6 @@ namespace _Project.Scripts.Core.Gameplay.Character
         {
             var movement = _currentInputDirection * _gameSettings.CharacterBaseSpeed;
             _rigidbody2D.AddForce(movement, ForceMode2D.Impulse);
-        }
-
-        private void Jump()
-        {
-            if (!_canJump)
-            {
-                return;
-            }
-
-            _canJump = false;
-            
-            jumpController.Jump().JumpFinished += OnJumpFinished;
-            
-            void OnJumpFinished()
-            {
-                _canJump = true;
-            }
         }
     }
 }

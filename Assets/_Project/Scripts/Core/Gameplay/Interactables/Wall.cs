@@ -1,12 +1,16 @@
 using UnityEngine;
+using CharacterController = _Project.Scripts.Core.Gameplay.Character.CharacterController;
 
 namespace _Project.Scripts.Core.Gameplay.Interactables
 {
     public class Wall : Interactable
     {
-        protected override void OnCharacterCollision()
+        [SerializeField] private float pushBackStrength;
+        
+        protected override void OnCharacterCollision(CharacterController character)
         {
-            Debug.Log("Character Detected");
+            character.GetDamaged();
+            character.Push(Vector2.left, pushBackStrength);
         }
     }
 }
