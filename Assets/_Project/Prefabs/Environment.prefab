@@ -710,6 +710,7 @@ MonoBehaviour:
   mainBackgroundLayerController: {fileID: 2004753647803417402}
   interactableObjectsLayerController: {fileID: 2173768122480004761}
   buildingsLayerController: {fileID: 2143529839556417226}
+  currentBaseBackgroundSpeed: 0
 --- !u!114 &8536262124448909831
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,11 +17,12 @@ MonoBehaviour:
   backgroundSpeed: 1
   treeLayerSpeed: 0.97
   buildingsLayerSpeed: 0.8
+  characterInitialHealth: 3
   characterBaseSpeed: 2
-  characterJumpForce: 0.4
-  characterJumpDuration: 0.6
-  characterJumpForceMedium: 1
-  characterJumpDurationMedium: 1.5
+  characterJumpForce: 0.2
+  characterJumpDuration: 0.42
+  characterJumpForceMedium: 1.75
+  characterJumpDurationMedium: 1.8
   characterJumpForceHigh: 3
   characterJumpDurationHigh: 3.5
   characterJumpEaseType: 1

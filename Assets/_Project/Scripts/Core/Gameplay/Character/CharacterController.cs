@@ -1,4 +1,5 @@
 using _Project.Scripts.GameServices;
+using _Project.Scripts.GameServices.Events;
 using UnityEngine;
 
 namespace _Project.Scripts.Core.Gameplay.Character
@@ -21,7 +22,7 @@ namespace _Project.Scripts.Core.Gameplay.Character
         [SerializeField] 
         private CharacterJumpController jumpController;
 
-        private float CurrentLife { get; set; }
+        private int CurrentHealth { get; set; }
         
         private IInputProvider _inputProvider;
         private GameSettings _gameSettings;
@@ -51,6 +52,7 @@ namespace _Project.Scripts.Core.Gameplay.Character
         private void SetGameSettings(IGameSettingsProvider provider)
         {
             _gameSettings = provider.GameSettings;
+            CurrentHealth = _gameSettings.CharacterInitialHealth;
         }
         
         private void SetInputProvider(IInputProvider inputProvider)
@@ -69,11 +71,14 @@ namespace _Project.Scripts.Core.Gameplay.Character
         {
             Jump(JumpType.Low);
         }
-
         
         public void GetDamaged()
         {
-            CurrentLife--;
+            var previousHealth = CurrentHealth;
+            
+            CurrentHealth--;
+
+            EventsManager.Raise(new CharacterLostHealth(CurrentHealth, previousHealth));
         }
         
         public void Push(Vector2 direction, float strength)

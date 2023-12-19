@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using _Project.Scripts.GameServices;
-using _Project.Scripts.Utilities;
 using UnityEngine;
+using _Project.Scripts.GameServices;
 
 namespace _Project.Scripts.Core.CoreGUI
 {
@@ -16,6 +15,7 @@ namespace _Project.Scripts.Core.CoreGUI
         private string _defaultMenuName = "DefaultMenu";
         private string _startupMenuPrefabName = "StartupMenu";
         private string _homeMenuPrefabName = "HomeMenu";
+        private string _gamePlayMenuPrefabName = "GamePlayMenu";
 
         private Dictionary<string, GameMenuBase> _catchedMenues = new();
 
@@ -31,6 +31,7 @@ namespace _Project.Scripts.Core.CoreGUI
             {
                 {typeof(StartupMenuView), _startupMenuPrefabName},
                 {typeof(HomeMenuView), _homeMenuPrefabName},
+                {typeof(GamePlayMenuView), _gamePlayMenuPrefabName},
             };
         }
         

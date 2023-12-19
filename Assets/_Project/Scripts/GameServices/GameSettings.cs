@@ -1,6 +1,6 @@
-﻿using DG.Tweening;
+﻿using UnityEngine;
+using DG.Tweening;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
 namespace _Project.Scripts.GameServices
 {
@@ -25,6 +25,9 @@ namespace _Project.Scripts.GameServices
         private float buildingsLayerSpeed;
         
         [Title("Character")] 
+        [SerializeField]
+        private int characterInitialHealth;
+        
         [SerializeField]
         private float characterBaseSpeed;
         
@@ -63,6 +66,7 @@ namespace _Project.Scripts.GameServices
         public float BackgroundSpeed => backgroundSpeed;
         public float TreeLayerSpeed => treeLayerSpeed;
         public float BuildingsLayerSpeed => buildingsLayerSpeed;
+        public int CharacterInitialHealth => characterInitialHealth; 
         public float CharacterBaseSpeed => characterBaseSpeed;
         public float CharacterJumpForce => characterJumpForce;
         public float CharacterJumpDuration => characterJumpDuration;

@@ -1,6 +1,6 @@
-﻿using _Project.Scripts.Utilities.WebGL;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using _Project.Scripts.Utilities.WebGL;
 
 namespace _Project.Scripts.Core.CoreGUI
 {

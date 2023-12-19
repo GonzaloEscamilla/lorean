@@ -51,6 +51,7 @@ MonoBehaviour:
   interactableMask:
     serializedVersion: 2
     m_Bits: 64
+  pushBackStrength: 0
 --- !u!114 &1778569666918505672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1956599851122662699}
+  shadowRenderer: {fileID: 0}
   xOutOfScreenPosition: {x: -2, y: 0, z: 0}
   spawnPosition: {x: 3, y: -0.72, z: 0}
   screenPositionReference: {fileID: 866853886177935079}
@@ -109,7 +111,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1344276459
   m_SortingLayer: 3
-  m_SortingOrder: 19
+  m_SortingOrder: 70
   m_Sprite: {fileID: 21300000, guid: 4e8bb26630019ec478a0e7e01fdcab0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
